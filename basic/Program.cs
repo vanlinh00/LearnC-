@@ -82,7 +82,7 @@ namespace MyApplication
             */
 
 
-            /* Bài toán tìm hình chữ nhật , có cạnh là lớn nhất     
+            /* B1: Bài toán tìm hình chữ nhật , có cạnh là lớn nhất     
 
                 int[] line=new int[1001];
                 int[] arrayPTtrung = new int[1001];
@@ -158,6 +158,7 @@ namespace MyApplication
 
             //------------------------------------------------------
             /* 
+             * B2:
              tìm ra câu trả lời cho sự sống, vũ trụ và vạn vật.
             Chính xác hơn là ... viết lại các số nhỏ từ đầu vào đến đầu ra. 
             Dừng xử lý đầu vào sau khi đọc số 42.
@@ -179,7 +180,8 @@ namespace MyApplication
             */
 
             //------------------------------------------------
-            /* check có phải là chuỗi con khong
+            /* B3
+             * check có phải là chuỗi con khong
              * SBSTR1 - Substring Check (Bug Funny)
                  1010110010 10110
                  1110111011 10011
@@ -229,6 +231,46 @@ namespace MyApplication
                 Console.WriteLine("0");
             }
             */
+            //--------------------------------------------------
+            /* B4: 
+             * PALIN - The Next Palindrome
+             * Input:
+    2
+    808
+    2133
+
+    Output:
+    818
+    2222
+             
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] arrayCanCheck = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                arrayCanCheck[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            int dem = 0;
+            while (dem < n)
+            {
+                for (int i = arrayCanCheck[dem] + 1; i < 100000; i++)
+                {
+                    int[] outarry = Array.ConvertAll(i.ToString().ToArray(), x => (int)x - 48);
+                    // xoa phan tu
+                    //outarry = outarry.Where(val => val != outarry[outarry.Length / 2]).ToArray();
+                    if (soSanhPalindrome(outarry))
+                    {
+                        Console.WriteLine("\n");
+                        inMang1c(outarry);
+
+                        Console.WriteLine("\n");
+                        break;
+                    }
+
+                }
+                dem++;
+            }
+            */
+
         }
         static void search2Max(int[] array)
         {
@@ -265,6 +307,33 @@ namespace MyApplication
             }
             return true;
         }
+        static void inMang1c(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine(array[i]);
+            }
+        }
+        static bool soSanhPalindrome(int[] array)
+        {
+            int a = (array.Length % 2 != 0) ? 1 : 0;
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                for (int j = array.Length / 2 + a; j < array.Length; j++)
+                {
+                    if (array[i] != array[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+
+
+
+        }
+
+
 
     }
     public class car
