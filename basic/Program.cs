@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 
 namespace MyApplication
@@ -80,13 +81,16 @@ namespace MyApplication
             }
             */
 
-            /* 
+             
              
             int[] line=new int[1001];
             int[] arrayPTtrung = new int[1001];
           
             int n = Convert.ToInt32(Console.ReadLine());
             int[] phanTudaLoc = new int[n];
+
+            var arlist1 = new ArrayList();
+     
 
             for (int i = 0; i < n; i++)
             {
@@ -102,22 +106,36 @@ namespace MyApplication
                     {
                         arrayPTtrung[line[i]] += 1;
                     }
-                    else
-                    {   if(phanTudaLoc[i] != line[i])
-                        {
-                            phanTudaLoc[i] = line[i];
-                        }    
-                       
-                    }
+                  
                 }
             }
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            for (int i=0;i< phanTudaLoc.Length; i++)
+            int dem = 0;
+            for (int i = 0; i < n; i++)
             {
-                Console.WriteLine(phanTudaLoc[i]);
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (line[i] == line[j])
+                    {
+                        dem++;
+                    }
+
+                }
+                if(dem==0)
+                {
+                    arlist1.Add(line[i])  ;
+                }
+                dem = 0;
+            }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("\n");
+            arlist1.Sort();
+            foreach (var i in arlist1)
+            {
+                Console.WriteLine(i);
             }    
 
+            /*
             Console.WriteLine("\n");
             Console.WriteLine("\n");
             Console.WriteLine("\n");
