@@ -90,24 +90,9 @@ namespace MyApplication
             int[] phanTudaLoc = new int[n];
 
             var arlist1 = new ArrayList();
-     
-
             for (int i = 0; i < n; i++)
             {
                 line[i] = Convert.ToInt32(Console.ReadLine());
-            }
-
-            
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = i+1; j < n; j++)
-                {
-                    if (line[i] == line[j])
-                    {
-                        arrayPTtrung[line[i]] += 1;
-                    }
-                  
-                }
             }
             int dem = 0;
             for (int i = 0; i < n; i++)
@@ -117,6 +102,7 @@ namespace MyApplication
                     if (line[i] == line[j])
                     {
                         dem++;
+                        arrayPTtrung[line[i]] += 1;
                     }
 
                 }
@@ -126,62 +112,70 @@ namespace MyApplication
                 }
                 dem = 0;
             }
+            /*
+             arraylist
 
             Console.WriteLine("\n");
             Console.WriteLine("\n");
             arlist1.Sort();
             foreach (var i in arlist1)
             {
-                Console.WriteLine(i);
-            }    
+             //   Console.WriteLine(i);
+            }
+            // Console.WriteLine("\n");
+            */
 
-            /*
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            int count = 0;
-            for(int i=0;i< arrayPTtrung.Length; i++)
-            {
-               if(arrayPTtrung[i]>=2)
-                {
-                    count++;
-                }    
-            }    
+            int max1 = 0;
+            int max2 = 0;
 
-      //      1 3 4 3 5 3 5
-
-
-
-            
-            Console.WriteLine("\n");
-            int count = 0;
+            // vì nó chạy từ bé đến lớn mời tìm max min kiểu này
             for(int i=0;i<arrayPTtrung.Length;i++)
             {
-                Console.WriteLine(arrayPTtrung[i]);
-               if(arrayPTtrung[i] ==1)
+               if(arrayPTtrung[i] >=1 && i>max1 )
                 {
-                    count++;
-                }
+                    max2 = max1;
+                    max1 = i;
+                 }
             }
 
-            if(count==1)
+            if(max1*max2==0)
             {
-                Console.WriteLine("hinh chu nhat");
-
+                Console.WriteLine("-1");
             }
             else
             {
-                Console.WriteLine("khong hinh chu nhat");
-
+             //   int s=((max1!=0 && max2==0):)
+                Console.WriteLine(max1 * max2);
             }
-            */
 
+            search2Max(line);
+       }
+       static void search2Max(int[] array)
+        {
+            int max1 = 0;
+            int max2 = 0;
+            for(int i=0;i<array.Length;i++)
+            {
+                if(array[i]>max1)
+                {
+                   
+                    max1 = array[i];
+                }    
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > max2&& array[i]<max1)
+                {
 
+                    max2 = array[i];
+                }
+            }
+
+            Console.WriteLine("max 2 va max 1 lan luot la");
+            Console.WriteLine(max2);
+            Console.WriteLine(max1);
         }
-  
-      
-
-    }
+   }
     public class car
     {
            public float speed;
