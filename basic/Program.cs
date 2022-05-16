@@ -163,7 +163,7 @@ namespace MyApplication
             Chính xác hơn là ... viết lại các số nhỏ từ đầu vào đến đầu ra. 
             Dừng xử lý đầu vào sau khi đọc số 42.
             Tất cả các số ở đầu vào là số nguyên có một hoặc hai chữ số.
-            
+
 
             int[] a = { 1, 2, 4, 6, 42,99 };
             for(int i =0;i<a.Length;i++)
@@ -188,7 +188,7 @@ namespace MyApplication
                  First two lines of output:
                     1
                     0
-             
+
 
             int[] A = { 1, 0, 1, 0, 1, 1, 0, 0, 1, 0 };
             int[] B = { 1, 0, 1, 1, 0 };
@@ -236,13 +236,13 @@ namespace MyApplication
             /* B4: 
              * PALIN - The Next Palindrome
              * Input:
-    2
-    808
-    2133
+            2
+            808
+            2133
 
-    Output:
-    818
-    2222
+            Output:
+            818
+            2222
 
             int n = Convert.ToInt32(Console.ReadLine());
             int[] arrayCanCheck = new int[n];
@@ -274,33 +274,33 @@ namespace MyApplication
 
             /* B5: ARITH - Simple Arithmetics  // chưa giải quyết được nếu phép nhân có số không
              *
-       input
-4 
-12345 + 67890
-324-111 
-325 * 4405 
-1234 * 4
+            input
+            4 
+            12345 + 67890
+            324-111 
+            325 * 4405 
+            1234 * 4
 
-output
-12345 
-+67890 
------- 
- 80235 
+            output
+            12345 
+            +67890 
+            ------ 
+            80235 
 
- 324 
--111 
----- 
- 213 
+            324 
+            -111 
+            ---- 
+            213 
 
-     325 
-  * 4405 
-  ----- 
-   1625 
-     0 
- 1300 
-1300 
-------- 
-1431625 
+            325 
+            * 4405 
+            ----- 
+            1625 
+            0 
+            1300 
+            1300 
+            ------- 
+            1431625 
             //     int a = 324;
             // int b = 4405;
             string[] a = new string[5];
@@ -337,6 +337,7 @@ output
                 }
             }
             */
+            /*
             //  2
             //  m n
             // B6 tim so nguyen tu trong khong tu m - n
@@ -360,6 +361,34 @@ output
                 checkSNTtrongMdenN(array2d[i, jj], array2d[i, jj + 1]);
 
             }
+            */
+            /* B7 FCTRL2 - Small factorials 
+             * tính gia thừa
+             *
+input
+4
+1
+2
+5
+3
+output
+ 1
+2
+120
+6
+            int t = Convert.ToInt32(Console.ReadLine());
+            int[] n = new int[t];
+            for (int i = 0; i < t; i++)
+            {
+                n[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.Write("\n");
+            for (int i = 0; i < t; i++)
+            {
+                Console.WriteLine(tinhGiaiThua(n[i]));
+            }
+            */
+
         }
         static void search2Max(int[] array)
         {
@@ -469,6 +498,16 @@ output
         {
 
             return khoangTrang.Remove(1, count);
+        }
+        // b7
+        static int tinhGiaiThua(int a)
+        {
+            int r = 1;
+            for (int i = 1; i <= a; i++)
+            {
+                r = r * i;
+            }
+            return r;
         }
     }
     public class car
