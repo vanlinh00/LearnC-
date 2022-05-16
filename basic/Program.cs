@@ -82,7 +82,7 @@ namespace MyApplication
             */
 
 
-            /* B1: Bài toán tìm hình chữ nhật , có cạnh là lớn nhất     
+            /* B1: Bài toán tìm hình chữ nhật , có cạnh là lớn nhất  ( dien tich lon  nhat)  
 
                 int[] line=new int[1001];
                 int[] arrayPTtrung = new int[1001];
@@ -337,7 +337,29 @@ output
                 }
             }
             */
+            //  2
+            //  m n
+            // B6 tim so nguyen tu trong khong tu m - n
 
+            int t = Convert.ToInt32(Console.ReadLine());
+            int[,] array2d = new int[t, 2];
+            for (int i = 0; i < t; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    array2d[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            inMang2c(array2d);
+
+            Console.WriteLine("\n");
+            int jj = 0;
+            for (int i = 0; i < t; i++)
+            {
+
+                checkSNTtrongMdenN(array2d[i, jj], array2d[i, jj + 1]);
+
+            }
         }
         static void search2Max(int[] array)
         {
@@ -381,6 +403,41 @@ output
                 Console.Write(array[i]);
             }
         }
+        static void inMang2c(int[,] array2)
+        {
+            for (int i = 0; i < array2.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    Console.Write(array2[i, j] + " ");
+                }
+                Console.Write("\n");
+            }
+        }
+        static void checkSNTtrongMdenN(int m, int n)
+        {
+
+            int count = 0;
+
+            for (int j = m; j <= n; j++)
+            {
+                for (int i = 1; i <= j; i++)
+                {
+                    if (j % i == 0)
+                    {
+                        count++;
+                        if (count == 2 && i == j)
+                        {
+                            Console.WriteLine(j);
+                        }
+
+                    }
+
+                }
+                count = 0;
+            }
+        }
+        //b4
         static bool soSanhPalindrome(int[] array)
         {
             int a = (array.Length % 2 != 0) ? 1 : 0;
@@ -396,6 +453,7 @@ output
             }
             return true;
         }
+        // b5
         static string addKhoangTrang(int soKhoangTrang)
         {
             string a = "";
@@ -406,6 +464,7 @@ output
             }
             return a;
         }
+        // b5
         static string subKhoangTrang(string khoangTrang, int count)
         {
 
