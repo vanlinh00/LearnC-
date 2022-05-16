@@ -231,6 +231,7 @@ namespace MyApplication
                 Console.WriteLine("0");
             }
             */
+
             //--------------------------------------------------
             /* B4: 
              * PALIN - The Next Palindrome
@@ -242,7 +243,7 @@ namespace MyApplication
     Output:
     818
     2222
-             
+
             int n = Convert.ToInt32(Console.ReadLine());
             int[] arrayCanCheck = new int[n];
             for (int i = 0; i < n; i++)
@@ -268,6 +269,72 @@ namespace MyApplication
 
                 }
                 dem++;
+            }
+            */
+
+            /* B5: ARITH - Simple Arithmetics  // chưa giải quyết được nếu phép nhân có số không
+             *
+       input
+4 
+12345 + 67890
+324-111 
+325 * 4405 
+1234 * 4
+
+output
+12345 
++67890 
+------ 
+ 80235 
+
+ 324 
+-111 
+---- 
+ 213 
+
+     325 
+  * 4405 
+  ----- 
+   1625 
+     0 
+ 1300 
+1300 
+------- 
+1431625 
+            //     int a = 324;
+            // int b = 4405;
+            string[] a = new string[5];
+            string khangCach = "              ";
+
+            Console.WriteLine(khangCach + "325");
+            Console.WriteLine(khangCach + "4405");
+
+            Console.WriteLine(khangCach + "-----");
+
+            //Console.WriteLine(khangCach + "1625");
+            //Console.WriteLine(khangCach + addKhoangTrang(2) + "0");
+            //Console.WriteLine(subKhoangTrang(khangCach, 2) + "1300");
+            //Console.WriteLine(subKhoangTrang(khangCach, 3) + "1300");
+            //Console.WriteLine(subKhoangTrang(khangCach, 3) + "-------");
+
+            //Console.WriteLine(subKhoangTrang(khangCach, 3) + "1431625");
+
+
+            int num1 = 325;
+            int num2 = 4405;
+            int[] arraynum2 = Array.ConvertAll(num2.ToString().ToArray(), x => (int)x - 48);
+            int num3 = 0;
+            for (int i = arraynum2.Length - 1; i >= 0; i--)
+            {
+                num3 = num1 * arraynum2[i];
+                if (num3 == 0)
+                {
+                    Console.WriteLine(khangCach + addKhoangTrang(arraynum2.Length - i) + num3);
+                }
+                else
+                {
+                    Console.WriteLine(subKhoangTrang(khangCach, arraynum2.Length - i - 1) + num3);
+                }
             }
             */
 
@@ -311,7 +378,7 @@ namespace MyApplication
         {
             for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(array[i]);
+                Console.Write(array[i]);
             }
         }
         static bool soSanhPalindrome(int[] array)
@@ -328,13 +395,22 @@ namespace MyApplication
                 }
             }
             return true;
-
-
-
         }
+        static string addKhoangTrang(int soKhoangTrang)
+        {
+            string a = "";
+            string index = " ";
+            for (int i = 0; i < soKhoangTrang; i++)
+            {
+                a += index;
+            }
+            return a;
+        }
+        static string subKhoangTrang(string khoangTrang, int count)
+        {
 
-
-
+            return khoangTrang.Remove(1, count);
+        }
     }
     public class car
     {
