@@ -461,7 +461,128 @@ namespace MyApplication
                 Console.WriteLine(convertA(a[i, 0]) + convertA(a[i, 1]));
             }
             */
+
+            /*------- ----------------------------------hackerank-----------------------------------------------------------*/
+            /*B1
+            * Simple Array Sum
+            *
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] a = new int[n];
+            int sum = 0;
+            for (int i = 0; i < n; i++)
+            {
+                a[i] = Convert.ToInt32(Console.ReadLine());
+                sum += a[i];
+            }
+            Console.WriteLine(sum);
+           * /
+            /*
+             * B2
+             * Compare the Triplets
+             *
+            int[,] thuThach = new int[2, 3];
+            int[] diem = new int[2];
+
+            for (int i = 0; i < thuThach.GetLength(0); i++)
+            {
+                for (int j = 0; j < thuThach.GetLength(1); j++)
+                {
+                    thuThach[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            for (int j = 0; j < thuThach.GetLength(1); j++)
+            {
+                if (thuThach[0, j] > thuThach[1, j])
+                {
+                    diem[0]++;
+                }
+                if (thuThach[0, j] < thuThach[1, j])
+                {
+                    diem[1]++;
+                }
+            }
+
+            Console.WriteLine("output");
+            inMang1c(diem);
+            */
+
+            /* B3 học về list cung như arrayList // nói chung là nhưng cái gì cho vào mảng là ông này làm được
+             * A Very Big Sum*
+             * 
+             * 
+            List<long> newList = new List<long>();
+            newList.Add(100000000);
+            newList.Add(1000000);
+            Console.WriteLine("in kieu for");
+            for (int i = 0; i < newList.Count; i++)
+            {
+                Console.WriteLine(newList[i]);
+            }
+            Console.WriteLine("in kieu foreach");
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+            // coopy vao 1 mang
+            long[] array = new long[newList.Count];
+            newList.CopyTo(array, 0);
+            foreach (long i in array)
+            {
+                Console.WriteLine(i);
+            }
+            // đảo ngược gái trị trong mảng
+            newList.Reverse();
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+            // add them 1 list nua
+            List<long> newList2 = new List<long>();
+            newList2.Add(2);
+            newList2.Add(2);
+            newList.AddRange(newList2);
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+            // tìm kiếm 1 phần từ bằng giá trị rồi chả về vị trí của đối tượng
+            Console.WriteLine(newList.BinarySearch(2));
+            //tim khiem phan tu trong mang xem co ton tai khong
+
+            Console.WriteLine(newList.Contains(2));
+            // trả về vị trí đầu tiên tìm thấy giá trị value
+
+            Console.WriteLine(newList.IndexOf(2));
+            // chen doi tuong value vao index
+            newList.Insert(0, 1123432);
+            Console.WriteLine("mang moi da chen thêm phân tử");
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+            // tra ve vi tri cuoi cung xuất hiện giá trị value trong list
+            Console.WriteLine("vi tri cuoi cung cua gia tri");
+            Console.WriteLine(newList.LastIndexOf(2));
+            newList.ToArray();
+
+            Console.WriteLine("sap xep la nhu the nao");
+            newList.Sort();
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+
+            newList.Clear();
+            Console.WriteLine("mang sau khi da clear");
+            foreach (long i in newList)
+            {
+                Console.WriteLine(i);
+            }
+            */
+
         }
+
+        /*---------------------------------hackrank-------------------*/
         static void search2Max(int[] array)
         {
             int max1 = 0;
@@ -501,7 +622,7 @@ namespace MyApplication
         {
             for (int i = 0; i < array.Length; i++)
             {
-                Console.Write(array[i]);
+                Console.Write(array[i] + " ");
             }
         }
         static void inMang2c(int[,] array2)
