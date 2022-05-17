@@ -6,7 +6,7 @@ namespace MyApplication
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             //int[] myNumbers = { 5, 1, 8, 9 };
             //Console.WriteLine(myNumbers.Max());  // returns the largest value
@@ -365,17 +365,17 @@ namespace MyApplication
             /* B7 FCTRL2 - Small factorials 
              * tính gia thừa
              *
-input
-4
-1
-2
-5
-3
-output
- 1
-2
-120
-6
+            input
+            4
+            1
+            2
+            5
+            3
+            output
+            1
+            2
+            120
+            6
             int t = Convert.ToInt32(Console.ReadLine());
             int[] n = new int[t];
             for (int i = 0; i < t; i++)
@@ -386,6 +386,59 @@ output
             for (int i = 0; i < t; i++)
             {
                 Console.WriteLine(tinhGiaiThua(n[i]));
+            }
+            */
+            /* B8
+             * A Needle in the Haystack   : 
+             * bài toán tìm cây khim trong đống cỏ   time : 12:27
+             * 
+input
+2 
+na 
+banananobano 
+6
+foobar 
+foo 
+9 
+foobarfoo 
+barfoobarfoobarfoobarfoobarfoo
+
+
+output
+2 
+4 
+
+3 
+9 
+15 
+21
+             *
+            // Console.WriteLine(string.Compare("a", "a"));
+            //1111
+            //  1    _> 4 = 4-1
+            //  12  -> 3 = 4-2+1
+            //  123  -> 2 = 4-3+1
+            //  1111 -> 1
+
+            int[] res = new int[3];
+            int taolao;
+            string[,] arrayString = new string[3, 2];
+            for (int i = 0; i < 3; i++)
+            {
+                taolao = Convert.ToInt32(Console.ReadLine());
+                for (int j = 0; j < 2; j++)
+                {
+
+                    arrayString[i, j] = Console.ReadLine();
+                }
+
+            }
+            Console.Write("\n");
+            inMang2c(arrayString);
+            Console.WriteLine("Output");
+            for (int i = 0; i < 3; i++)
+            {
+                timViTriCuaMangConTrongMangto(arrayString[i, 0], arrayString[i, 1]);
             }
             */
 
@@ -509,6 +562,45 @@ output
             }
             return r;
         }
+        // b8
+        static void inMang2c(string[,] array2)
+        {
+            for (int i = 0; i < array2.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    Console.Write(array2[i, j] + " ");
+                }
+                Console.Write("\n");
+            }
+        }
+        static void timViTriCuaMangConTrongMangto(string A, string B)
+        {
+
+            if (A.Length > B.Length)
+            {
+                Console.Write("\n");
+            }
+            else
+            {
+                int check = 0;
+                for (int i = 0; i < B.Length - A.Length + 1; i++)
+                {
+                    string subStringofB = B.Substring(i, A.Length);
+                    if (String.Compare(A, subStringofB) == 0)
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+                if (check == 0)
+                {
+                    Console.Write("\n");
+                }
+            }
+
+        }
+
+
     }
     public class car
     {
