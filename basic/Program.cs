@@ -580,6 +580,40 @@ namespace MyApplication
             }
             */
 
+            /** B4 Diagonal Difference
+             * Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+             * Cho một ma trận vuông, hãy tính hiệu số tuyệt đối giữa các tổng của các đường chéo của nó.
+             * 
+            int n = Convert.ToInt32(Console.ReadLine());
+            int tongDcLtoF = 1;
+            int tongDcRtoL = 1;
+            int[,] a = new int[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    a[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (j == i)
+                    {
+                        // Console.WriteLine("gia tri L to R  " + a[i, j]);
+                        tongDcLtoF += a[i, j];
+                    }
+                    if (j == n - i - 1)
+                    {
+                        ///  Console.WriteLine("gia tri R to L  " + a[i, j]);
+                        tongDcRtoL += a[i, j];
+                    }
+                }
+            }
+            Console.WriteLine(Math.Abs(tongDcLtoF - tongDcRtoL));
+            */
+
         }
 
         /*---------------------------------hackrank-------------------*/
