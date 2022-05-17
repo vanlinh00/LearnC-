@@ -392,26 +392,26 @@ namespace MyApplication
              * A Needle in the Haystack   : 
              * bài toán tìm cây khim trong đống cỏ   time : 12:27
              * 
-input
-2 
-na 
-banananobano 
-6
-foobar 
-foo 
-9 
-foobarfoo 
-barfoobarfoobarfoobarfoobarfoo
+            input
+            2 
+            na 
+            banananobano 
+            6
+            foobar 
+            foo 
+            9 
+            foobarfoo 
+            barfoobarfoobarfoobarfoobarfoo
 
 
-output
-2 
-4 
+            output
+            2 
+            4 
 
-3 
-9 
-15 
-21
+            3 
+            9 
+            15 
+            21
              *
             // Console.WriteLine(string.Compare("a", "a"));
             //1111
@@ -442,6 +442,25 @@ output
             }
             */
 
+            /* B9 ADDREV - Adding Reversed Numbers
+             * tính tổng 2 số đảo ngược
+             
+
+            int t = Convert.ToInt32(Console.ReadLine());
+            int[,] a = new int[t, 2];
+            for (int i = 0; i < t; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    a[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+
+            for (int i = 0; i < t; i++)
+            {
+                Console.WriteLine(convertA(a[i, 0]) + convertA(a[i, 1]));
+            }
+            */
         }
         static void search2Max(int[] array)
         {
@@ -599,7 +618,20 @@ output
             }
 
         }
+        // B9
+        static int convertA(int a)
+        {
+            string convert = "";
+            while (a != 0)
+            {
+                int newNum = a % 10;
+                convert += newNum;
+                a = a / 10;
+            }
 
+
+            return Int32.Parse(convert);
+        }
 
     }
     public class car
