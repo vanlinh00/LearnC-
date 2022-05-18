@@ -613,10 +613,287 @@ namespace MyApplication
             }
             Console.WriteLine(Math.Abs(tongDcLtoF - tongDcRtoL));
             */
+            /* 
+             * B5: Plus Minus
+             *
+             
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            List<int> listA = new List<int>(4);
+            for (int i = 0; i < n; i++)
+            {
+                int a = Convert.ToInt32(Console.ReadLine());
+                listA.Add(a);
+            }
+            plusMinus(listA);
+            */
+
+            /* có cả kiểu list của  list
+             * List<List<int>> arr   
+           // List<int> lista = new List<int> { 1, 2 };
+            */
+
+            /*  
+             * B6 Staircase
+             
+            staircase(100);
+            */
+            /* B7 Mini-Max Sum
+             */
+            /*
+             * B8 bài thi của soket
+             
+            int[] array = { 1, 1, 4, 4, 2, 2, 5, 5, 5, 3 };
+
+            List<List<int>> arrayList = new List<List<int>>();
+
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                arrayList.Add(new List<int>());
+                arrayList[i].Add(array[i]);
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if (Math.Abs(array[i] - array[j]) <= 1)
+                    {
+                        if (checkB8(arrayList[i], array[j]))
+                        {
+
+                            arrayList[i].Add(array[j]);
+                        }
+
+                    }
+                }
+            }
+            inListInlist(arrayList);
+            */
+
+            /* B8
+             * Time Conversion
+             * input 07:05:45PM
+             * output19:05:45
+             
+            string s = Console.ReadLine();
+
+            Console.WriteLine(timeConversion(s));
+            */
+            /*
+             **
+             */
+            int n = 4;
+            List<int> list = new List<int>(n);
+            list.Add(73);
+            list.Add(67);
+            list.Add(38);
+            list.Add(33);
+
+            foreach (int i in gradingStudents(list))
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+        /*---------------------------------hackrank funtion-------------------*/
+
+        public static List<int> gradingStudents(List<int> grades)
+        {
+            List<int> roundArray = new List<int>(grades.Count);
+            foreach (int grade in grades)
+            {
+                ///  Console.WriteLine(grade);
+                if (grade < 38 || grade % 10 == 0 || grade % 10 == 5)
+                {
+
+                    roundArray.Add(grade);
+                }
+                else
+                {
+                    int phanDu = grade % 10;
+                    if (phanDu > 5 && 10 - phanDu < 3)
+                    {
+                        roundArray.Add(grade + 10 - phanDu);
+                    }
+                    else
+                    {
+                        if (phanDu < 5 && Math.Abs(5 - phanDu) < 3)
+                        {
+                            roundArray.Add(grade + 5 - phanDu);
+
+                        }
+                        else
+                        {
+                            roundArray.Add(grade);
+                        }
+                    }
+                }
+            }
+            return roundArray;
+        }
+        // B8
+        public static string timeConversion(string s)
+        {
+
+            String res = "";
+            if (s[s.Length - 2].CompareTo('P') == 0)
+            {
+                if ((s[0].CompareTo('0')) == 0)
+                {
+                    res += (int.Parse(s[1].ToString()) + 12).ToString();
+
+                }
+                else
+                {
+                    string a = char.ToString(s[0]) + char.ToString(s[1]);
+                    if (int.Parse(a) >= 12)
+                    {
+                        res += a;
+                    }
+                    else
+                    {
+                        res += (int.Parse(a) + 12);
+                    }
+
+                }
+            }
+            else
+            {
+                string a = char.ToString(s[0]) + char.ToString(s[1]);
+                if (int.Parse(a) == 12)
+                {
+                    res += "00";
+                }
+                else
+                {
+                    res += a;
+                }
+            }
+            for (int i = 2; i < s.Length - 2; i++)
+            {
+                // Console.WriteLine(s[i]);
+                res += s[i].ToString();
+
+            }
+            return res;
+        }
+
+        // in list trong list 
+        public static void inListInlist(List<List<int>> arrayList)
+        {
+            for (int i = 0; i < arrayList.Count; i++)
+            {
+                for (int j = 0; j < arrayList[i].Count; j++)
+                {
+                    if (arrayList[i].Count != 1)
+                    {
+                        Console.Write(arrayList[i][j]);
+                    }
+
+                }
+                Console.Write("\n");
+            }
+        }
+
+        public static bool checkB8(List<int> arr, int a)
+        {
+
+            foreach (int i in arr)
+            {
+                if (Math.Abs(i - a) > 1)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        //B7
+        public static void miniMaxSum(List<int> arr)
+        {
+            int max = 0;
+            int min = 0;
+
+            arr.Sort();
+            for (int i = 1; i < arr.Count; i++)
+            {
+                max += arr[i];
+            }
+            for (int i = 0; i < arr.Count - 1; i++)
+            {
+                min += arr[i];
+            }
+            Console.Write(min + " " + max);
+        }
+        public static void miniMaxSum2(List<int> arr)
+        {
+            int max = 0;
+            int min = 0;
+            int tong = 0;
+            for (int i = 0; i < arr.Count; i++)
+            {
+                tong += arr[i];
+            }
+            for (int j = 0; j < arr.Count; j++)
+            {
+                if (tong - arr[j] > max)
+                {
+                    max = tong - arr[j];
+                }
+            }
+            min = tong - arr[0];
+            for (int j = 0; j < arr.Count; j++)
+            {
+                if (tong - arr[j] < min)
+                {
+                    min = tong - arr[j];
+                }
+            }
+            Console.Write(min + " " + max);
+        }
+
+        //B6
+        public static void staircase(int n)
+        {
+            int tru = n - 1;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < i + tru; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int index = i + tru; index < n; index++)
+                {
+                    Console.Write("#");
+                }
+                tru -= 2;
+                Console.Write("\n");
+            }
+        }
+        public static void plusMinus(List<int> arr)
+        {
+            // float[] res= new float[3];
+            int[] res = new int[3];
+            for (int i = 0; i < arr.Count; i++)
+            {
+                if (arr[i] > 0)
+                {
+                    res[0]++;
+                }
+                else if (arr[i] < 0)
+                {
+                    res[1]++;
+                }
+                else
+                {
+                    res[2]++;
+                }
+            }
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.WriteLine((double)res[i] / arr.Count);
+            }
 
         }
 
-        /*---------------------------------hackrank-------------------*/
         static void search2Max(int[] array)
         {
             int max1 = 0;
