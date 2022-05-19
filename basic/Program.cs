@@ -677,9 +677,10 @@ namespace MyApplication
 
             Console.WriteLine(timeConversion(s));
             */
-            /*
+            /* B9 làm toán làm cho số giúp giáo sư tại một trường đại học
              **
-             */
+             *
+             
             int n = 4;
             List<int> list = new List<int>(n);
             list.Add(73);
@@ -691,10 +692,50 @@ namespace MyApplication
             {
                 Console.WriteLine(i);
             }
+            */
+            /* //https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen=true
+             * B10 
+             *     số quả tao trong phạm vi của s và t
+             
+            int s = 7, t = 11, a = 5, b = 15, nApples = 3, nOranges = 2;
+            List<int> apples = new List<int> { -2, 2, 1 };
+            List<int> oranges = new List<int> { 5, -6 };
+            countApplesAndOranges(s, t, a, b, apples, oranges);
+            */
+
         }
 
         /*---------------------------------hackrank funtion-------------------*/
+        public static void countApplesAndOranges(int s, int t, int a, int b, List<int> apples, List<int> oranges)
+        {
+            int sumApples = 0;
+            int sumOranges = 0;
+            for (int i = 0; i < apples.Count; i++)
+            {
+                apples[i] += a;
+                if (apples[i] >= s && apples[i] < t || apples[i] <= t && apples[i] > s)
+                {
+                    sumApples++;
+                }
+            }
 
+
+            for (int i = 0; i < oranges.Count; i++)
+            {
+                oranges[i] += b;
+
+                if (oranges[i] >= s && oranges[i] < t || oranges[i] <= t && oranges[i] > s)
+                {
+                    sumOranges++;
+                }
+            }
+
+
+            Console.WriteLine(sumApples);
+            Console.WriteLine(sumOranges);
+        }
+
+        /// B9
         public static List<int> gradingStudents(List<int> grades)
         {
             List<int> roundArray = new List<int>(grades.Count);
