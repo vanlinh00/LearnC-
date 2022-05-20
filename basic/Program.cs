@@ -712,15 +712,151 @@ namespace MyApplication
              *  int x1 = 0, v1 = 3, x2 = 4, v2 = 2;
             Console.WriteLine(kangaroo(x1, v1, x2, v2));
              */
-            // b11 
+            // b11 Left Rotation
             /*
              * 
 5 4
 1 2 3 4 5
              */
+            /* b12
+            List<int> apples = new List<int> { -2, 2, 1 };
+            apples.Reverse();
+            */
+
+
+            /*
+             * B14
+     
+    0 1 2 3 4 5
+0   1 1 1 0 0 0
+1   0 1 0 0 0 0
+2   1 1 1 0 0 0
+3   0 0 2 4 4 0
+4   0 0 0 2 0 0
+5   0 0 1 2 4 0
+             **/
+            //  Convert.ToInt32(Console.ReadLine());
+
+            List<List<int>> listA = new List<List<int>>();
+            int n = 6;
+            for (int i = 0; i < n; i++)
+            {
+                listA.Add(new List<int>());
+                for (int j = 0; j < n; j++)
+                {
+                    listA[i].Add(1);
+                }
+            }
+            Console.WriteLine(B14hourglassSum(listA));
+
+
         }
 
+
         /*---------------------------------hackrank funtion-------------------*/
+
+        // B14
+        /*
+     * Complete the 'hourglassSum' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
+     */
+        public static int dienTich2(List<int> arr)
+        {
+            int s = 0;
+            for (int i = 0; i < arr.Count; i++)
+            {
+                if (i == 3 || i == 5)
+                {
+
+                }
+                else
+                {
+                    s += arr[i];
+                }
+                //  Console.Write('\n');
+            }
+            return s;
+        }
+
+        public static int dientich1(List<List<int>> arr)
+        {
+            List<int> subArray1d = new List<int>();
+            int maxS = 0;
+            int index = 0;
+            int count_ = 2;
+            while (index < 4)
+            {
+                for (int i = index; i <= count_; i++)
+                {
+
+
+                    for (int j = 0; j < arr[i].Count; j++)
+                    {
+                        //   Console.Write(arr[i][j]);
+                        subArray1d.Add(arr[i][j]);
+                    }
+                    //   Console.Write("\n");
+                }
+                int maxTamthoi = dienTich2(subArray1d);
+                if (index == 0)
+                {
+                    maxS = maxTamthoi;
+                }
+                //   Console.Write(maxTamthoi);
+                subArray1d.Clear();
+                if (maxTamthoi > maxS)
+                {
+                    // Console.Write(maxTamthoi);
+                    maxS = maxTamthoi;
+                }
+
+                index++;
+                count_++;
+            }
+            return maxS;
+
+        }
+        public static int B14hourglassSum(List<List<int>> arr)
+        {
+            List<List<int>> subArray = new List<List<int>>(6);
+            int dk = 0;
+            int max = 0;
+            int dienTichMax = 0;
+            while (dk <= 4)
+            {
+                for (int i = 0; i < arr.Count; i++)
+                {
+                    subArray.Add(new List<int>());
+                    for (int j = dk; j < 3 + dk && j < 6; j++)
+                    {
+                        //  Console.Write(arr[i][j]);
+                        subArray[i].Add(arr[i][j]);
+                    }
+                    // Console.Write("\n");
+                }
+                int maxTamThoi = dientich1(subArray);
+                if (dk == 0)
+                {
+                    max = maxTamThoi;
+                }
+                if (maxTamThoi > max)
+                {
+                    max = maxTamThoi;
+                }
+                for (int a = 0; a < subArray.Count; a++)
+                {
+                    subArray[a].Clear();
+                }
+                dk++;
+
+            }
+            return max;
+        }
+
+
+        // b 11
         public static List<int> rotateLeft(int d, List<int> arr)
         {
 
@@ -780,412 +916,413 @@ namespace MyApplication
             }
         }
 
-    }
 
-    /*
-     *
-     * B10   số quả tao trong phạm vi của s và t
-     */
-    public static void countApplesAndOranges(int s, int t, int a, int b, List<int> apples, List<int> oranges)
-    {
-        int sumApples = 0;
-        int sumOranges = 0;
-        for (int i = 0; i < apples.Count; i++)
+
+        /*
+         *
+         * B10   số quả tao trong phạm vi của s và t
+         */
+        public static void countApplesAndOranges(int s, int t, int a, int b, List<int> apples, List<int> oranges)
         {
-            apples[i] += a;
-            if (apples[i] >= s && apples[i] < t || apples[i] <= t && apples[i] > s)
+            int sumApples = 0;
+            int sumOranges = 0;
+            for (int i = 0; i < apples.Count; i++)
             {
-                sumApples++;
-            }
-        }
-
-
-        for (int i = 0; i < oranges.Count; i++)
-        {
-            oranges[i] += b;
-
-            if (oranges[i] >= s && oranges[i] < t || oranges[i] <= t && oranges[i] > s)
-            {
-                sumOranges++;
-            }
-        }
-
-
-        Console.WriteLine(sumApples);
-        Console.WriteLine(sumOranges);
-    }
-
-    /// B9
-    public static List<int> gradingStudents(List<int> grades)
-    {
-        List<int> roundArray = new List<int>(grades.Count);
-        foreach (int grade in grades)
-        {
-            ///  Console.WriteLine(grade);
-            if (grade < 38 || grade % 10 == 0 || grade % 10 == 5)
-            {
-
-                roundArray.Add(grade);
-            }
-            else
-            {
-                int phanDu = grade % 10;
-                if (phanDu > 5 && 10 - phanDu < 3)
+                apples[i] += a;
+                if (apples[i] >= s && apples[i] < t || apples[i] <= t && apples[i] > s)
                 {
-                    roundArray.Add(grade + 10 - phanDu);
+                    sumApples++;
+                }
+            }
+
+
+            for (int i = 0; i < oranges.Count; i++)
+            {
+                oranges[i] += b;
+
+                if (oranges[i] >= s && oranges[i] < t || oranges[i] <= t && oranges[i] > s)
+                {
+                    sumOranges++;
+                }
+            }
+
+
+            Console.WriteLine(sumApples);
+            Console.WriteLine(sumOranges);
+        }
+
+        /// B9
+        public static List<int> gradingStudents(List<int> grades)
+        {
+            List<int> roundArray = new List<int>(grades.Count);
+            foreach (int grade in grades)
+            {
+                ///  Console.WriteLine(grade);
+                if (grade < 38 || grade % 10 == 0 || grade % 10 == 5)
+                {
+
+                    roundArray.Add(grade);
                 }
                 else
                 {
-                    if (phanDu < 5 && Math.Abs(5 - phanDu) < 3)
+                    int phanDu = grade % 10;
+                    if (phanDu > 5 && 10 - phanDu < 3)
                     {
-                        roundArray.Add(grade + 5 - phanDu);
-
+                        roundArray.Add(grade + 10 - phanDu);
                     }
                     else
                     {
-                        roundArray.Add(grade);
+                        if (phanDu < 5 && Math.Abs(5 - phanDu) < 3)
+                        {
+                            roundArray.Add(grade + 5 - phanDu);
+
+                        }
+                        else
+                        {
+                            roundArray.Add(grade);
+                        }
                     }
                 }
             }
+            return roundArray;
         }
-        return roundArray;
-    }
-    // B8
-    public static string timeConversion(string s)
-    {
-
-        String res = "";
-        if (s[s.Length - 2].CompareTo('P') == 0)
+        // B8
+        public static string timeConversion(string s)
         {
-            if ((s[0].CompareTo('0')) == 0)
-            {
-                res += (int.Parse(s[1].ToString()) + 12).ToString();
 
+            String res = "";
+            if (s[s.Length - 2].CompareTo('P') == 0)
+            {
+                if ((s[0].CompareTo('0')) == 0)
+                {
+                    res += (int.Parse(s[1].ToString()) + 12).ToString();
+
+                }
+                else
+                {
+                    string a = char.ToString(s[0]) + char.ToString(s[1]);
+                    if (int.Parse(a) >= 12)
+                    {
+                        res += a;
+                    }
+                    else
+                    {
+                        res += (int.Parse(a) + 12);
+                    }
+
+                }
             }
             else
             {
                 string a = char.ToString(s[0]) + char.ToString(s[1]);
-                if (int.Parse(a) >= 12)
+                if (int.Parse(a) == 12)
                 {
-                    res += a;
+                    res += "00";
                 }
                 else
                 {
-                    res += (int.Parse(a) + 12);
+                    res += a;
                 }
+            }
+            for (int i = 2; i < s.Length - 2; i++)
+            {
+                // Console.WriteLine(s[i]);
+                res += s[i].ToString();
 
             }
+            return res;
         }
-        else
-        {
-            string a = char.ToString(s[0]) + char.ToString(s[1]);
-            if (int.Parse(a) == 12)
-            {
-                res += "00";
-            }
-            else
-            {
-                res += a;
-            }
-        }
-        for (int i = 2; i < s.Length - 2; i++)
-        {
-            // Console.WriteLine(s[i]);
-            res += s[i].ToString();
 
-        }
-        return res;
-    }
-
-    // in list trong list 
-    public static void inListInlist(List<List<int>> arrayList)
-    {
-        for (int i = 0; i < arrayList.Count; i++)
+        // in list trong list 
+        public static void inListInlist(List<List<int>> arrayList)
         {
-            for (int j = 0; j < arrayList[i].Count; j++)
+            for (int i = 0; i < arrayList.Count; i++)
             {
-                if (arrayList[i].Count != 1)
+                for (int j = 0; j < arrayList[i].Count; j++)
                 {
-                    Console.Write(arrayList[i][j]);
-                }
-
-            }
-            Console.Write("\n");
-        }
-    }
-
-    public static bool checkB8(List<int> arr, int a)
-    {
-
-        foreach (int i in arr)
-        {
-            if (Math.Abs(i - a) > 1)
-            {
-                return false;
-            }
-
-        }
-        return true;
-    }
-    //B7
-    public static void miniMaxSum(List<int> arr)
-    {
-        int max = 0;
-        int min = 0;
-
-        arr.Sort();
-        for (int i = 1; i < arr.Count; i++)
-        {
-            max += arr[i];
-        }
-        for (int i = 0; i < arr.Count - 1; i++)
-        {
-            min += arr[i];
-        }
-        Console.Write(min + " " + max);
-    }
-    public static void miniMaxSum2(List<int> arr)
-    {
-        int max = 0;
-        int min = 0;
-        int tong = 0;
-        for (int i = 0; i < arr.Count; i++)
-        {
-            tong += arr[i];
-        }
-        for (int j = 0; j < arr.Count; j++)
-        {
-            if (tong - arr[j] > max)
-            {
-                max = tong - arr[j];
-            }
-        }
-        min = tong - arr[0];
-        for (int j = 0; j < arr.Count; j++)
-        {
-            if (tong - arr[j] < min)
-            {
-                min = tong - arr[j];
-            }
-        }
-        Console.Write(min + " " + max);
-    }
-
-    //B6
-    public static void staircase(int n)
-    {
-        int tru = n - 1;
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < i + tru; j++)
-            {
-                Console.Write(" ");
-            }
-            for (int index = i + tru; index < n; index++)
-            {
-                Console.Write("#");
-            }
-            tru -= 2;
-            Console.Write("\n");
-        }
-    }
-    public static void plusMinus(List<int> arr)
-    {
-        // float[] res= new float[3];
-        int[] res = new int[3];
-        for (int i = 0; i < arr.Count; i++)
-        {
-            if (arr[i] > 0)
-            {
-                res[0]++;
-            }
-            else if (arr[i] < 0)
-            {
-                res[1]++;
-            }
-            else
-            {
-                res[2]++;
-            }
-        }
-        for (int i = 0; i < res.Length; i++)
-        {
-            Console.WriteLine((double)res[i] / arr.Count);
-        }
-
-    }
-
-    static void search2Max(int[] array)
-    {
-        int max1 = 0;
-        int max2 = 0;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] > max1)
-            {
-                max1 = array[i];
-            }
-        }
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] > max2 && array[i] < max1)
-            {
-
-                max2 = array[i];
-            }
-        }
-
-        Console.WriteLine("max 2 va max 1 lan luot la");
-        Console.WriteLine(max2);
-        Console.WriteLine(max1);
-    }
-    static bool soSanh2Array(int[] array1, int[] array2)
-    {
-        for (int i = 0; i < array1.Length; i++)
-        {
-            if (array1[i] != array2[i])
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    static void inMang1c(int[] array)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            Console.Write(array[i] + " ");
-        }
-    }
-    static void inMang2c(int[,] array2)
-    {
-        for (int i = 0; i < array2.GetLength(0); i++)
-        {
-            for (int j = 0; j < array2.GetLength(1); j++)
-            {
-                Console.Write(array2[i, j] + " ");
-            }
-            Console.Write("\n");
-        }
-    }
-    static void checkSNTtrongMdenN(int m, int n)
-    {
-
-        int count = 0;
-
-        for (int j = m; j <= n; j++)
-        {
-            for (int i = 1; i <= j; i++)
-            {
-                if (j % i == 0)
-                {
-                    count++;
-                    if (count == 2 && i == j)
+                    if (arrayList[i].Count != 1)
                     {
-                        Console.WriteLine(j);
+                        Console.Write(arrayList[i][j]);
                     }
 
                 }
-
-            }
-            count = 0;
-        }
-    }
-    //b4
-    static bool soSanhPalindrome(int[] array)
-    {
-        int a = (array.Length % 2 != 0) ? 1 : 0;
-        for (int i = 0; i < array.Length / 2; i++)
-        {
-            for (int j = array.Length / 2 + a; j < array.Length; j++)
-            {
-                if (array[i] != array[j])
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    // b5
-    static string addKhoangTrang(int soKhoangTrang)
-    {
-        string a = "";
-        string index = " ";
-        for (int i = 0; i < soKhoangTrang; i++)
-        {
-            a += index;
-        }
-        return a;
-    }
-    // b5
-    static string subKhoangTrang(string khoangTrang, int count)
-    {
-
-        return khoangTrang.Remove(1, count);
-    }
-    // b7
-    static int tinhGiaiThua(int a)
-    {
-        int r = 1;
-        for (int i = 1; i <= a; i++)
-        {
-            r = r * i;
-        }
-        return r;
-    }
-    // b8
-    static void inMang2c(string[,] array2)
-    {
-        for (int i = 0; i < array2.GetLength(0); i++)
-        {
-            for (int j = 0; j < array2.GetLength(1); j++)
-            {
-                Console.Write(array2[i, j] + " ");
-            }
-            Console.Write("\n");
-        }
-    }
-    static void timViTriCuaMangConTrongMangto(string A, string B)
-    {
-
-        if (A.Length > B.Length)
-        {
-            Console.Write("\n");
-        }
-        else
-        {
-            int check = 0;
-            for (int i = 0; i < B.Length - A.Length + 1; i++)
-            {
-                string subStringofB = B.Substring(i, A.Length);
-                if (String.Compare(A, subStringofB) == 0)
-                {
-                    Console.WriteLine(i);
-                }
-            }
-            if (check == 0)
-            {
                 Console.Write("\n");
             }
         }
 
-    }
-    // B9
-    static int convertA(int a)
-    {
-        string convert = "";
-        while (a != 0)
+        public static bool checkB8(List<int> arr, int a)
         {
-            int newNum = a % 10;
-            convert += newNum;
-            a = a / 10;
+
+            foreach (int i in arr)
+            {
+                if (Math.Abs(i - a) > 1)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        //B7
+        public static void miniMaxSum(List<int> arr)
+        {
+            int max = 0;
+            int min = 0;
+
+            arr.Sort();
+            for (int i = 1; i < arr.Count; i++)
+            {
+                max += arr[i];
+            }
+            for (int i = 0; i < arr.Count - 1; i++)
+            {
+                min += arr[i];
+            }
+            Console.Write(min + " " + max);
+        }
+        public static void miniMaxSum2(List<int> arr)
+        {
+            int max = 0;
+            int min = 0;
+            int tong = 0;
+            for (int i = 0; i < arr.Count; i++)
+            {
+                tong += arr[i];
+            }
+            for (int j = 0; j < arr.Count; j++)
+            {
+                if (tong - arr[j] > max)
+                {
+                    max = tong - arr[j];
+                }
+            }
+            min = tong - arr[0];
+            for (int j = 0; j < arr.Count; j++)
+            {
+                if (tong - arr[j] < min)
+                {
+                    min = tong - arr[j];
+                }
+            }
+            Console.Write(min + " " + max);
         }
 
+        //B6
+        public static void staircase(int n)
+        {
+            int tru = n - 1;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < i + tru; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int index = i + tru; index < n; index++)
+                {
+                    Console.Write("#");
+                }
+                tru -= 2;
+                Console.Write("\n");
+            }
+        }
+        public static void plusMinus(List<int> arr)
+        {
+            // float[] res= new float[3];
+            int[] res = new int[3];
+            for (int i = 0; i < arr.Count; i++)
+            {
+                if (arr[i] > 0)
+                {
+                    res[0]++;
+                }
+                else if (arr[i] < 0)
+                {
+                    res[1]++;
+                }
+                else
+                {
+                    res[2]++;
+                }
+            }
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.WriteLine((double)res[i] / arr.Count);
+            }
 
-        return Int32.Parse(convert);
+        }
+
+        static void search2Max(int[] array)
+        {
+            int max1 = 0;
+            int max2 = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > max1)
+                {
+                    max1 = array[i];
+                }
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > max2 && array[i] < max1)
+                {
+
+                    max2 = array[i];
+                }
+            }
+
+            Console.WriteLine("max 2 va max 1 lan luot la");
+            Console.WriteLine(max2);
+            Console.WriteLine(max1);
+        }
+        static bool soSanh2Array(int[] array1, int[] array2)
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        static void inMang1c(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + " ");
+            }
+        }
+        static void inMang2c(int[,] array2)
+        {
+            for (int i = 0; i < array2.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    Console.Write(array2[i, j] + " ");
+                }
+                Console.Write("\n");
+            }
+        }
+        static void checkSNTtrongMdenN(int m, int n)
+        {
+
+            int count = 0;
+
+            for (int j = m; j <= n; j++)
+            {
+                for (int i = 1; i <= j; i++)
+                {
+                    if (j % i == 0)
+                    {
+                        count++;
+                        if (count == 2 && i == j)
+                        {
+                            Console.WriteLine(j);
+                        }
+
+                    }
+
+                }
+                count = 0;
+            }
+        }
+        //b4
+        static bool soSanhPalindrome(int[] array)
+        {
+            int a = (array.Length % 2 != 0) ? 1 : 0;
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                for (int j = array.Length / 2 + a; j < array.Length; j++)
+                {
+                    if (array[i] != array[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        // b5
+        static string addKhoangTrang(int soKhoangTrang)
+        {
+            string a = "";
+            string index = " ";
+            for (int i = 0; i < soKhoangTrang; i++)
+            {
+                a += index;
+            }
+            return a;
+        }
+        // b5
+        static string subKhoangTrang(string khoangTrang, int count)
+        {
+
+            return khoangTrang.Remove(1, count);
+        }
+        // b7
+        static int tinhGiaiThua(int a)
+        {
+            int r = 1;
+            for (int i = 1; i <= a; i++)
+            {
+                r = r * i;
+            }
+            return r;
+        }
+        // b8
+        static void inMang2c(string[,] array2)
+        {
+            for (int i = 0; i < array2.GetLength(0); i++)
+            {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    Console.Write(array2[i, j] + " ");
+                }
+                Console.Write("\n");
+            }
+        }
+        static void timViTriCuaMangConTrongMangto(string A, string B)
+        {
+
+            if (A.Length > B.Length)
+            {
+                Console.Write("\n");
+            }
+            else
+            {
+                int check = 0;
+                for (int i = 0; i < B.Length - A.Length + 1; i++)
+                {
+                    string subStringofB = B.Substring(i, A.Length);
+                    if (String.Compare(A, subStringofB) == 0)
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+                if (check == 0)
+                {
+                    Console.Write("\n");
+                }
+            }
+
+        }
+        // B9
+        static int convertA(int a)
+        {
+            string convert = "";
+            while (a != 0)
+            {
+                int newNum = a % 10;
+                convert += newNum;
+                a = a / 10;
+            }
+
+
+            return Int32.Parse(convert);
+        }
+
     }
-
 }
 public class car
 {
@@ -1193,4 +1330,3 @@ public class car
     public string color;
 }
 
-}
