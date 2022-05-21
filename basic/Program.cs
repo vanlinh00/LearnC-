@@ -767,16 +767,58 @@ namespace MyApplication
              */
 
             /*
-             * B19
+             * B19  Migratory Birds
+             *    in ra con chim xuất hiện nhiều thứ nhất
+             *    nếu có 2 con xuất hiện ngang nhau thì in còn nhiều thứ 2
                         11
-            1 2 3 4 5 4 3 2 1 3 4
-            */
+            1 2 3 4 5 4 3 2 1 3 4 
+            */                //                   2  3 4   5  4  3  2  1 3   4    
+            List<int> newList = new List<int> { 1, 1, 1, 2, 2, 3, 3, 3, 3 };
+            Console.WriteLine(migratoryBirds(newList));
         }
 
 
 
 
         /*---------------------------------hackrank funtion-------------------*/
+
+        public static int migratoryBirds(List<int> arr)
+        {
+            int[] arrayCount = new int[5];
+            int[] allBirds = { 1, 2, 3, 4, 5 };
+            for (int i = 0; i < allBirds.Length; i++)
+            {
+                for (int j = 0; j < arr.Count; j++)
+                {
+                    if (allBirds[i] == arr[j])
+                    {
+                        arrayCount[i]++;
+                    }
+                }
+            }
+
+            int max1 = arrayCount[0];
+            int posMax1 = 0;
+            int max2 = -1;
+            int posMax2 = -1;
+            for (int i = 1; i < arrayCount.Length; i++)
+            {
+
+                if (max1 <= arrayCount[i])
+                {
+                    max2 = max1;
+                    posMax2 = posMax1;
+                    max1 = arrayCount[i];
+                    posMax1 = i;
+                }
+            }
+            //   Console.WriteLine("max2  " + max2);
+            return (max1 == max2) ? posMax2 + 1 : posMax1 + 1;
+        }
+
+
+
+        // B18
         static int countingValleys2(int n, string s)
         {
             var valleyCount = 0;
@@ -811,9 +853,6 @@ namespace MyApplication
             1
             2  4
              */
-
-
-
             int[] MandV = new int[10];
             int posMandV = 0;
             char ptSoSanh = path[0];
