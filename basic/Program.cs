@@ -734,7 +734,7 @@ namespace MyApplication
 3   0 0 2 4 4 0
 4   0 0 0 2 0 0
 5   0 0 1 2 4 0
-             **/
+             
             //  Convert.ToInt32(Console.ReadLine());
 
             List<List<int>> listA = new List<List<int>>();
@@ -748,13 +748,146 @@ namespace MyApplication
                 }
             }
             Console.WriteLine(B14hourglassSum(listA));
+            */
+            /* b15
+             *
+             *   SinglyLinkedList llist = new SinglyLinkedList();
+             */
 
+            /* b17
+             *  tìm tất cùng màu
+             *
+   9                         
+10 20 20 10 10 30 50 10 20  
+            sockMerchant(n,list);
+             */
 
+            /*  B18  Counting Valleys 
+             *   Console.WriteLine(countingValleys2(8, "UDDDUDUU"));
+             */
+
+            /*
+             * B19
+                        11
+            1 2 3 4 5 4 3 2 1 3 4
+            */
         }
 
 
-        /*---------------------------------hackrank funtion-------------------*/
 
+
+        /*---------------------------------hackrank funtion-------------------*/
+        static int countingValleys2(int n, string s)
+        {
+            var valleyCount = 0;
+            var elevation = 0;
+            var isValley = false;
+
+            foreach (var ch in s)
+            {
+                elevation += Char.ToUpper(ch) == 'U' ? 1 : -1;
+                Console.WriteLine(elevation);
+                if (elevation < 0)
+                {
+                    isValley = true;
+                }
+                else if (elevation == 0 && isValley)
+                {
+                    valleyCount++;
+                    isValley = false;
+                }
+            }
+
+            return valleyCount;
+        }
+
+        public static int countingValleys(int steps, string path)
+        {
+
+            /*
+            1 0
+            3  
+            1  2
+            1
+            2  4
+             */
+
+
+
+            int[] MandV = new int[10];
+            int posMandV = 0;
+            char ptSoSanh = path[0];
+            for (int i = 0; i < steps; i++)
+            {
+                if (path[i].CompareTo(ptSoSanh) == 0)
+                {
+                    MandV[posMandV]++;
+                }
+                else
+                {
+                    ptSoSanh = path[i];
+                    posMandV++;
+                    MandV[posMandV]++;
+                }
+            }
+            return countV(MandV);
+        }
+        static int countV(int[] arr)
+        {
+            int numV = 0;
+            int posMax = 1;
+            for (int i = 0; i < arr.Length && arr[i] != 0; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    if (Math.Abs(arr[posMax] - arr[i]) <= 1)
+                    {
+                        numV++;
+                        posMax = i + 1;
+                    }
+                }
+
+            }
+            return numV;
+        }
+
+
+
+
+        // b17
+        public static int sockMerchant(int n, List<int> ar)
+        {
+            int[] array = new int[101];
+
+            for (int i = 0; i < ar.Count; i++)
+            {
+                //Console.WriteLine(ar[i]);
+                array[ar[i]]++;
+            }
+            int countCoup = 0;
+            for (int i = 0; i < array.Count(); i++)
+            {
+                if (array[i] > 0)
+                {
+                    countCoup += array[i] / 2;
+                }
+            }
+            return countCoup;
+        }
+
+        // b16
+        static void printLinkedList(SinglyLinkedList head)
+        {
+
+            while (head != null)
+            {
+                // Console.WriteLine(head.data);
+                //  head = head.next;
+
+            }
+
+
+        }
         // B14
         /*
      * Complete the 'hourglassSum' function below.
@@ -884,9 +1017,6 @@ namespace MyApplication
                     dem = dem + arr[i][j];
 
                 }
-                //   if()
-
-
             }
             return max;
         }
@@ -1323,10 +1453,18 @@ namespace MyApplication
         }
 
     }
+
+
 }
 public class car
 {
     public float speed;
     public string color;
+}
+public class SinglyLinkedList
+
+{
+    int data;
+    SinglyLinkedList next;
 }
 
