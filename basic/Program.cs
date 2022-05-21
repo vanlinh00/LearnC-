@@ -772,10 +772,23 @@ namespace MyApplication
              *    nếu có 2 con xuất hiện ngang nhau thì in còn nhiều thứ 2
                         11
             1 2 3 4 5 4 3 2 1 3 4 
-            */                //                   2  3 4   5  4  3  2  1 3   4    
+                           //                   2  3 4   5  4  3  2  1 3   4
+                              //                   
             List<int> newList = new List<int> { 1, 1, 1, 2, 2, 3, 3, 3, 3 };
             Console.WriteLine(migratoryBirds(newList));
+            */
+
+            /*-------------------------------------OOP ---------------------------------------*/
+
+            // tính kế thừa
+            hinhChuNhat a1 = new hinhChuNhat();
+            a1.height = 5;
+            a1.width = 3;
+            Console.WriteLine(a1.tinhDienTich());
+
+
         }
+
 
 
 
@@ -1495,11 +1508,25 @@ namespace MyApplication
 
 
 }
+/*---------------------------OOP with c#-------------*/
+public class shape
+{
+    public int height { get; set; }
+    public int width { get; set; }
+}
+public class hinhChuNhat : shape
+{
+    public int tinhDienTich()
+    {
+        return height * width;
+    }
+}
 public class car
 {
     public float speed;
     public string color;
 }
+
 public class SinglyLinkedList
 
 {
