@@ -781,10 +781,29 @@ namespace MyApplication
             /*-------------------------------------OOP ---------------------------------------*/
 
             // tính kế thừa
-            hinhChuNhat a1 = new hinhChuNhat();
+            /*
+            hinhChuNhat a1 = new hinhChuNhat(4, 5);
             a1.height = 5;
             a1.width = 3;
             Console.WriteLine(a1.tinhDienTich());
+            // tính đa hình 
+              // overload method
+            a1.resize(3);
+            Console.WriteLine(a1.tinhDienTich());
+            a1.resize(5, 5);
+            Console.WriteLine(a1.tinhDienTich());
+            */
+            // overload operator
+            /*
+            hinhChuNhat a1 = new hinhChuNhat(5, 4);
+            hinhChuNhat a2 = new hinhChuNhat(5, 3);
+            hinhChuNhat a3 = a1 + a2;
+            Console.WriteLine(a3.tinhDienTich());
+            */
+            Application application1 = new Application(new imageExport());
+            application1.ExportData();
+
+
 
 
         }
@@ -1516,11 +1535,77 @@ public class shape
 }
 public class hinhChuNhat : shape
 {
+
+    public hinhChuNhat(int h, int w)
+    {
+        height = h;
+        width = w;
+    }
     public int tinhDienTich()
     {
         return height * width;
     }
+
+    // tinh da hinh
+    // 1 overload method
+    public void resize(int h, int w)
+    {
+        height = h;
+        width = w;
+    }
+
+    public void resize(int a)
+    {
+        height = a;
+        width = a;
+    }
+    // 2 overlaod operator
+    public static hinhChuNhat operator +(hinhChuNhat a, hinhChuNhat b)
+    {
+        return new hinhChuNhat(a.height + b.height, a.width + b.width);
+    }
 }
+// tinh trừu tượng :
+// là khả năng ấn chi tiết triển khai
+// chỉ cung cấp thông tin tính năng tới user
+// khi các chi tiết phương thức trong từ class thực thi 
+// cái interface này khác nhau 
+// ví dụ interface animal có phướng thứ Sound()
+// như tiếng kếu và cách kêu cùa từng loại động vật
+// là khác nhau nên phải dùng đến interface
+interface IExportData
+{
+    void Export();
+}
+class textExport : IExportData
+{
+    // bắt buộc phải có
+    public void Export()
+    {
+        Console.WriteLine("Export text");
+    }
+}
+class imageExport : IExportData
+{
+    public void Export()
+    {
+        Console.WriteLine(" Export image");
+    }
+}
+class Application
+{
+    private readonly IExportData _exportData;
+    public Application(IExportData exportData)
+    {
+        _exportData = exportData;
+    }
+    public void ExportData()
+    {
+        _exportData.Export();
+    }
+}
+
+
 public class car
 {
     public float speed;
