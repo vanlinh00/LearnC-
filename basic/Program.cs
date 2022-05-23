@@ -776,7 +776,23 @@ namespace MyApplication
                               //                   
             List<int> newList = new List<int> { 1, 1, 1, 2, 2, 3, 3, 3, 3 };
             Console.WriteLine(migratoryBirds(newList));
+
             */
+            /*   B20 Bill Division
+             *
+                
+               bonAppetit (  );
+             */
+
+            /* b21  Subarray Division
+            
+5
+1 2 1 3 2
+3 2
+      output
+            2
+            */
+
 
             /*-------------------------------------OOP ---------------------------------------*/
 
@@ -800,9 +816,10 @@ namespace MyApplication
             hinhChuNhat a3 = a1 + a2;
             Console.WriteLine(a3.tinhDienTich());
             */
+            /* Trừ tượng - interface
             Application application1 = new Application(new imageExport());
             application1.ExportData();
-
+            */
 
 
 
@@ -813,6 +830,59 @@ namespace MyApplication
 
 
         /*---------------------------------hackrank funtion-------------------*/
+        // 21
+        public static int sumSubarrray(List<int> arr)
+        {
+            int res = 0;
+            foreach (int i in arr)
+            {
+                res += i;
+            }
+            return res;
+        }
+
+        public static int birthday(List<int> s, int d, int m)
+        {
+            int res = 0;
+            List<int> subArray = new List<int>();
+            int countSubAraa = m;
+            int index = 0;
+            while (countSubAraa <= s.Count)
+            {
+                for (int i = index; i < countSubAraa; i++)
+                {
+                    subArray.Add(s[i]);
+                }
+                Console.WriteLine(sumSubarrray(subArray));
+                if (sumSubarrray(subArray) == d)
+                {
+                    res++;
+                }
+
+                index++;
+                countSubAraa++;
+                subArray.Clear();
+            }
+
+            return res;
+        }
+        // b20
+        public static void bonAppetit(List<int> bill, int k, int b)
+        {
+            ///  Console.Write("hihi");
+            int soTienChia = 0;
+            for (int i = 0; i < bill.Count; i++)
+            {
+                if (i != k)
+                {
+                    soTienChia += bill[i];
+                }
+            }
+            string res = ((b - (soTienChia / 2))) == 0 ? "Bon Appetit" : (b - (soTienChia / 2)).ToString();
+
+            Console.WriteLine(res);
+        }
+
 
         public static int migratoryBirds(List<int> arr)
         {
