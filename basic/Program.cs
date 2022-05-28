@@ -793,6 +793,28 @@ namespace MyApplication
             2
             */
 
+            /* b22
+             * Divisible Sum Pairs
+  input
+ 6 3             n = 6, k = 3
+1 3 2 6 1 2 
+       output
+             5
+            divisibleSumPairs (n,k,arr);
+             */
+
+            /* b23 Electronics Shop
+             
+10 2 3
+3 1
+5 2 8
+            getMoneySpent();
+
+            output
+            9
+
+             */
+
 
             /*-------------------------------------OOP ---------------------------------------*/
 
@@ -822,7 +844,32 @@ namespace MyApplication
             */
 
 
+            /*---------------------------------hackrank--------------*/
+            // 24
+            /*
+             *    con mèo nào bắt chuột nhanh hơn
+             catAndMouse(x,y,z)
+             
+             */
 
+            /* b25 
+             * 
+             * Climbing the Leaderboard
+             *
+             */
+            ranking a = new ranking();
+            a.point = 1;
+            List<int> ranked = new List<int> { 100, 100, 50, 40, 40, 20, 10 };
+            List<int> player = new List<int> { 5, 25, 50, 120 };
+
+            //checkRank(ranked);
+            List<int> res = new List<int>();
+
+            res = climbingLeaderboard(ranked, player);
+            foreach (int i in res)
+            {
+                Console.WriteLine(i);
+            }
         }
 
 
@@ -830,6 +877,123 @@ namespace MyApplication
 
 
         /*---------------------------------hackrank funtion-------------------*/
+        // b25
+        public static int checkRank(List<int> ranked, int pointPlayer)
+        {
+            List<ranking> listRank = new List<ranking>();
+            ranking rankPlayer1 = new ranking();
+            int _rank = 1;
+            rankPlayer1.rank = _rank;
+            rankPlayer1.point = ranked[0];
+            listRank.Add(rankPlayer1);
+            for (int i = 1; i < ranked.Count; i++)
+            {
+                ranking rankPlayern = new ranking();
+                rankPlayern.point = ranked[i];
+                if (ranked[i] - ranked[i - 1] == 0)
+                {
+
+                    rankPlayern.rank = _rank;
+                }
+                else
+                {
+                    _rank++;
+                    rankPlayern.rank = _rank;
+
+                }
+                listRank.Add(rankPlayern);
+            }
+            int checkRankPlayer = 0;
+            for (int i = 0; i < listRank.Count; i++)
+            {
+                if (listRank[i].point == pointPlayer)
+                {
+                    checkRankPlayer = listRank[i].rank;
+
+                }
+            }
+            return checkRankPlayer;
+        }
+        public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
+        {
+            List<int> rankOfPlayer = new List<int>();
+
+            foreach (int i in player)
+            {
+                ranked.Add(i);
+                ranked.Sort();
+                ranked.Reverse();
+                rankOfPlayer.Add(checkRank(ranked, i));
+            }
+            return rankOfPlayer;
+        }
+
+
+        // 24
+        static string catAndMouse(int x, int y, int z)
+        {
+
+            int d1 = Math.Abs(x - z);
+            int d2 = Math.Abs(y - z);
+            if (d1 < d2)
+            {
+                return "Cat A";
+            }
+            else if (d1 > d2)
+            {
+                return "Cat B";
+            }
+            else
+            {
+                return "Mouse C";
+            }
+
+        }
+
+
+        // 23
+        static int getMoneySpent(int[] keyboards, int[] drives, int b)
+        {
+            /*
+             * Write your code here.
+             */
+            int max = 0;
+            for (int i = 0; i < keyboards.Length; i++)
+            {
+                for (int j = 0; j < drives.Length; j++)
+                {
+                    int sumKanD = keyboards[i] + drives[j];
+                    if (sumKanD <= b)
+                    {
+                        if (sumKanD > max)
+                        {
+                            max = sumKanD;
+                        }
+                    }
+                }
+            }
+            return (max != 0) ? max : -1;
+        }
+
+
+        // 22
+        public static int divisibleSumPairs(int n, int k, List<int> ar)
+        {
+            int res = 0;
+            for (int i = 0; i < ar.Count; i++)
+            {
+                for (int j = i + 1; j < ar.Count; j++)
+                {
+                    if (((ar[i] + ar[j]) % k) == 0)
+                    {
+                        Console.WriteLine(i);
+                        Console.WriteLine(j);
+                        res++;
+                    }
+                }
+            }
+            return res;
+        }
         // 21
         public static int sumSubarrray(List<int> arr)
         {
@@ -1595,6 +1759,14 @@ namespace MyApplication
 
     }
 
+
+}
+
+/*----------------------hankrank class--------- */
+public class ranking
+{
+    public int rank { get; set; }
+    public int point { get; set; }
 
 }
 /*---------------------------OOP with c#-------------*/
