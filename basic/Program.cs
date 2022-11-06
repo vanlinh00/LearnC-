@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyApplication
@@ -855,8 +856,9 @@ namespace MyApplication
             /* b25 
              * 
              * Climbing the Leaderboard
-             *
-             */
+             * 
+             *  https://programsaddaa.blogspot.com/2020/06/climbing-leaderboard.html
+             
             ranking a = new ranking();
             a.point = 1;
             List<int> ranked = new List<int> { 100, 100, 50, 40, 40, 20, 10 };
@@ -870,13 +872,317 @@ namespace MyApplication
             {
                 Console.WriteLine(i);
             }
+            */
+            /*
+               // b26
+
+               int[] a = { 1, 2, 3, 2, 3, 5 };
+               int[] aa = new int[a.Length];
+               // 1 4 6 5 
+               for (int i = 0; i < a.Length; i++)
+               {
+                   aa[a[i]] = aa[a[i]] + a[i];
+
+
+               }
+               for (int i = 0; i < aa.Length; i++)
+               {
+                   if (aa[i] != 0)
+                   {
+                       Console.WriteLine(aa[i]);
+
+                   }
+               }
+               */
+
+            //var random = new Random();
+            //var list = new List<string> { "one", "two", "three", "four" };
+            //int index = random.Next(list.Count);
+            //Console.WriteLine(list[index]);
+
+
+            //  checkSumMax();
+
+            // b26  Picking Numbers
+            // pickingNumbers();
+
+
+
+            /*
+            //b27 Drawing Book 
+            //   Console.WriteLine(pageCount(6, 5));
+
+            */
+
+            // b28 beautifulDays
+
+
+
+            /*
+          // b29 Fair Rations
+input
+5
+2 3 4 5 6
+output:  4
+            // phat banh sao cho tat ca deu la chan
+             **/
+
+            /*
+            // b30 Circular Array Rotation
+            circularArrayRotation
+           * /
+
         }
 
+*/
+
+            /*
+             Circular Array Rotation
+3 2 3
+1 2 3
+0
+1
+2
+             */
 
 
+            /* 31
+            int res = checkPitago(10);
+            Console.WriteLine(res);
+            */
 
+
+        }
+
+        // B31  check so pitago
+        static int checkPitago(int n)
+        {
+            int count = 0;
+            for (int a = 3; a <= n; a++)
+            {
+                for (int b = a + 1; b <= n; b++)
+                {
+                    float c = MathF.Sqrt(a * a + b * b);
+                    if (c > n)
+                    {
+                        break;
+                    }
+                    if ((int)c == c)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
+        // b30
+        public static List<int> circularArrayRotation(List<int> a, int k, List<int> queries)
+        {
+            /*
+             while(k>0)
+             {   
+                 int b= a[a.Count-1];
+                 a.RemoveAt(a.Count-1);
+                 a.Insert(0,b);
+                 k--;
+             }
+
+             List<int> arr= new List<int>();
+             foreach(int i in queries)
+             {
+                 arr.Add(Convert.ToInt32(a[i]));
+             }
+
+         return arr;
+         */
+            // a la mang
+            // k so lan xoay
+            // queries so phan tu can queries
+
+            int len = a.Count;
+            List<int> ans = new List<int>();
+
+
+            int[] tempArr = new int[a.Count];
+            k = k % len;
+            for (int i = 0; i < a.Count; i++)
+            {
+                int index = (i + k) % len;
+                tempArr[index] = a[i];
+            }
+            for (int i = 0; i < queries.Count; i++)
+            {
+                ans.Add(tempArr[queries[i]]);
+            }
+            return ans;
+        }
+
+        // b29
+        public static string fairRations(List<int> B)
+        {
+            var count = 0;
+            for (int i = 0; i < B.Count - 1; i++)
+            {
+                if (B[i] % 2 != 0)
+                {
+                    B[i]++;
+                    B[i + 1]++;
+                    count += 2;
+                }
+                while (i < B.Count - 1 && B[i + 1] % 2 == 0)
+                    i++;
+
+            }
+            if (B[B.Count - 1] % 2 != 0)
+            {
+                return "NO";
+            }
+            else
+            {
+                return count.ToString();
+            }
+        }
+
+        public static int saveThePrisoner(int n, int m, int s)
+        {
+            int t = s - 1;
+            for (int i = 0; i < m; i++)
+            {
+                t++;
+                if (t == n)
+                {
+                    t = 0;
+                }
+            }
+            return (t == 0 ? 1 : t);
+        }
+
+        public static int beautifulDays(int i, int j, int k)
+        {
+            int count = 0;
+            for (int a = i; a <= j; a++)
+            {
+                int b = 3;
+                float c = (MathF.Abs(a - b) / k);
+                if ((MathF.Abs(a - b) / k - (int)c) == 0)
+                {
+                    Console.WriteLine(b);
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public static int pageCount(int n, int p)
+        {
+            int ressult = 0;
+            int count1 = 0;
+            int count2 = 0;
+            if (p % 2 == 0)
+            {
+                //left -right
+                count1 = p / 2;
+                //right- left;
+                count2 = rightToLeft(n, p);
+
+            }
+            else
+            {
+
+                count1 = (p - 1) / 2;
+                count2 = (n - p == 1) ? 1 : rightToLeft(n, p);
+            }
+            return (count2 <= count1) ? count2 : count1;
+
+        }
+
+        public static int rightToLeft(int n, int p)
+        {
+            for (int i = 0; i <= n / 2; i++)
+            {
+                if ((n - 2 * i) == p || (n - (2 * i + 1) == p))
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        public static int pickingNumbers()
+        {
+            /*
+            List<int> array = new List<int> { 1, 1, 2, 2, 4, 4, 5, 5, 5 };
+            array.Sort();
+            int max = 0;
+            int count = 1;
+            for (int i = 0; i < array.Count; i++)
+            {
+                for (int j = i + 1; j < array.Count; j++)
+                {
+                    float mu = MathF.Abs(array[i] - array[j]);
+                    if (mu == 0 || mu == 1)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+                if (count > max)
+                {
+                    max = count;
+
+                }
+                count = 1;
+            }
+
+            return max;
+            */
+
+            /* cach 2 . short and quick*/
+            int lengtMaxSubArray = 0;
+            List<int> array = new List<int> { 1, 1, 2, 2, 4, 4, 5, 5, 5 };
+            for (int i = 0; i < array.Count; i++)
+            {
+                int count1 = 1;
+                int count2 = 1;
+                for (int j = i + 1; j < array.Count; j++)
+                {
+                    float mu = MathF.Abs(array[i] - array[j]);
+                    if (mu <= 1 && array[i] >= array[j])
+                    {
+                        count1++;
+                    }
+                    if (mu <= 1 && array[i] <= array[j])
+                    {
+                        count2++;
+                    }
+                }
+                if (count1 > count2)
+                {
+                    if (count1 > lengtMaxSubArray)
+                        lengtMaxSubArray = count1;
+                }
+                else
+                {
+                    if (count2 > lengtMaxSubArray)
+                        lengtMaxSubArray = count2;
+                }
+            }
+            //  Console.WriteLine(lengtMaxSubArray);
+
+            return lengtMaxSubArray;
+
+        }
 
         /*---------------------------------hackrank funtion-------------------*/
+
+
+
+
         // b25
         public static int checkRank(List<int> ranked, int pointPlayer)
         {
